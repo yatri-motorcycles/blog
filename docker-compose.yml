@@ -1,0 +1,20 @@
+# by default, the Ghost image will use SQLite (and thus requires no separate database container)
+# we have used MySQL here merely for demonstration purposes (especially environment-variable-based configuration)
+
+version: '3.1'
+
+services:
+  yatri-ghost:
+    build:
+      context: ./ghost
+      dockerfile: Dockerfile.dev
+    restart: always
+    ports:
+      - 3004:2368
+    # environment:
+    #   # see https://ghost.org/docs/config/#configuration-options
+    env_file:
+      - .env.dev
+    volumes:
+      - /var/lib/ghost/content/themes/yatri-casper/node_modules
+      - ./ghost/themes/yatri-casper:/var/lib/ghost/content/themes/yatri-casper

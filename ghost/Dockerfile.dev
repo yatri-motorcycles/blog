@@ -1,0 +1,9 @@
+FROM ghost:4
+
+WORKDIR /var/lib/ghost
+
+COPY ./themes/yatri-casper ./content/themes/yatri-casper
+
+RUN cd ./content/themes/yatri-casper && yarn install
+
+# CMD tail -f /dev/null
